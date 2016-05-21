@@ -4,10 +4,10 @@
 
 pkgname=xboxdrv
 pkgver=0.8.8
-pkgrel=1
+pkgrel=2
 pkgdesc='Userspace gamepad driver for Linux'
 url='http://pingus.seul.org/~grumbel/xboxdrv'
-arch=('i686' 'x86_64')
+arch=('i686' 'x86_64' 'armv7h')
 license=('GPL3')
 depends=('libx11' 'dbus-glib' 'libusb' 'python2-dbus')
 makedepends=('scons' 'boost' 'pkg-config' 'libx11')
@@ -16,7 +16,7 @@ source=(${pkgname}-${pkgver}.tar.gz::https://github.com/xboxdrv/${pkgname}/archi
         ${pkgname}.service
         ${pkgname}.default)
 sha512sums=('3f27856da211a14e27a84fa5919da7965262adc36da16c75eed9bae891098183b5751a3e707573b4ab64e69096ea74d455e8f64827c88b38b65af94cc13b34ad'
-            'cb6efe6d2254e46c3913cd1f913133deb8e7223ff3bfe49bb17aef20dfa9d30332fe4d0aa2e812eb3199103571b5a79d4475c89f74a09d7b8f1f26ecce38ec05'
+            'c148ae286e3611bf61c0b34e9b2b48d76b4283ec81a4edcd0e330ec89dcee77f275e3052b8e204645aaf511452af9940ad3e0b9b43866daf18dfa202cade1934'
             '4f6e9a12b208254e19daba477dd7787147a8b2c8a83007d92f8cfce6212c21ce3306f23a2669080f0e46986ca102ab08c262b42c678caf1a891326b4e2c40b5f')
 
 prepare() {
@@ -27,9 +27,6 @@ prepare() {
 build() {
   cd ${pkgname}-${pkgver}
   scons \
-    BUILD=custom \
-    LINKFLAGS="${LDFLAGS}" \
-    CXXFLAGS="${CPPFLAGS} ${CXXFLAGS}" \
     "${MAKEFLAGS}"
 }
 
